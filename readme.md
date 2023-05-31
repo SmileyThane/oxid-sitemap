@@ -4,7 +4,7 @@
 
 ## Requirements
 - Oxid eShop >= 6.2
-- PHP >= 7.*|8.*
+- PHP >= 7.* | 8.*
 
 ## Installation
 
