@@ -1,0 +1,69 @@
+parameters:
+  smileythane.sitemap.lower_urls: true
+services:
+  _defaults:
+    autowire: true
+
+  SmileyThane\OxidSiteMap\Entity\Config:
+    arguments:
+      $filepath: '@=service("OxidEsales\\Eshop\\Core\\Config").getConfigParam("sShopDir")'
+      $filename: 'sitemap.xml'
+      $shopUrl: '@=service("OxidEsales\\Eshop\\Core\\Config").getConfigParam("sShopURL")'
+      $langParams: '@=service("OxidEsales\\Eshop\\Core\\Config").getConfigParam("aLanguageParams")'
+
+  SmileyThane\OxidSiteMap\Query\HomePage:
+    arguments:
+      $hierarchy: '0.8'
+      $changefreq: 'weekly'
+  SmileyThane\OxidSiteMap\Query\Categories:
+    arguments:
+      $hierarchy: '0.8'
+      $changefreq: 'weekly'
+  SmileyThane\OxidSiteMap\Query\HiddenCategories:
+    arguments:
+      $hierarchy: '0.8'
+      $changefreq: 'weekly'
+  SmileyThane\OxidSiteMap\Query\Cms:
+    arguments:
+      $hierarchy: '0.1'
+      $changefreq: 'weekly'
+  SmileyThane\OxidSiteMap\Query\Tags:
+    arguments:
+      $hierarchy: '0.1'
+      $changefreq: 'weekly'
+  SmileyThane\OxidSiteMap\Query\Products:
+    arguments:
+      $hierarchy: '1.0'
+      $changefreq: 'daily'
+#  SmileyThane\OxidSiteMap\Query\Variants:
+#    arguments:
+#      $hierarchy: '1.0'
+#      $changefreq: 'daily'
+
+  SmileyThane\OxidSiteMap\Filter\UrlFilter:
+    arguments:
+      $shopUrl: '@=service("OxidEsales\\Eshop\\Core\\Config").getConfigParam("sShopURL")'
+      $urls:
+        - '/AGB/'
+
+  SmileyThane\OxidSiteMap\SiteMapGenerator:
+    public: true
+    arguments:
+      $config: '@SmileyThane\OxidSiteMap\Entity\Config'
+      $queries:
+        - '@SmileyThane\OxidSiteMap\Query\HomePage'
+        - '@SmileyThane\OxidSiteMap\Query\Categories'
+        - '@SmileyThane\OxidSiteMap\Query\HiddenCategories'
+        - '@SmileyThane\OxidSiteMap\Query\Cms'
+        - '@SmileyThane\OxidSiteMap\Query\Tags'
+        - '@SmileyThane\OxidSiteMap\Query\Products'
+#        - '@SmileyThane\OxidSiteMap\Query\Variants'
+      $lowerUrls: '%smileythane.sitemap.lower_urls%'
+      $filters:
+        - '@SmileyThane\OxidSiteMap\Filter\UrlFilter'
+
+  SmileyThane\OxidSiteMap\Commands\SiteMapCommand:
+    class: SmileyThane\OxidSiteMap\Commands\SiteMapCommand
+    public: true
+    tags:
+      - { name: 'console.command', command: 'smileythane:sitemap:generate' }
