@@ -1,10 +1,11 @@
 # Google Sitemap Exporter
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/smileythane/oxid-sitemap.svg?style=flat-square)](https://packagist.org/packages/smileythane/oxid-sitemap)
+[![Total Downloads](https://img.shields.io/packagist/dt/smileythane/oxid-sitemap.svg?style=flat-square)](https://packagist.org/packages/smileythane/oxid-sitemap)
 
-[![Build Status][ico-travis]][link-travis]
 
 ## Requirements
 - Oxid eShop >= 6.2
-- PHP >= 7.*|8.*
+- PHP >= 7.* | 8.*
 
 ## Installation
 
