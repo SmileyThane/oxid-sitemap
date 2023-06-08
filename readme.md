@@ -1,6 +1,5 @@
 # Google Sitemap Exporter
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/smileythane/oxid-sitemap.svg?style=flat-square)](https://packagist.org/packages/smileythane/oxid-sitemap)
-[![Build Status](https://img.shields.io/travis/smileythane/oxid-sitemap/master.svg?style=flat-square)](https://travis-ci.org/smileythane/oxid-sitemap)
 [![Total Downloads](https://img.shields.io/packagist/dt/smileythane/oxid-sitemap.svg?style=flat-square)](https://packagist.org/packages/smileythane/oxid-sitemap)
 
 
