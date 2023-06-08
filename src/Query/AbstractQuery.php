@@ -61,11 +61,31 @@ abstract class AbstractQuery implements QueryInterface
             $url = $result['oxstdurl'];
         }
 
+        $image = null;
+        $imgUrl = $result['oxpic'] ?? $result['oxthumb'];
+        if ($imgUrl) {
+            $image['url'] = $this->getConfig()->getImageUrl($this->isAdmin(), true, null, $imgUrl);
+            $image['caption'] = $result['oxtitle'];
+        }
+
+
         return new Page(
             $this->config->getShopUrl() . $url,
             $this->hierarchy,
             (new \DateTime())->format(\DateTime::ATOM),
-            $this->changefreq
+            $this->changefreq,
+            $this->getImageData($result)
         );
+    }
+
+    protected function getImageData($result) {
+        $image = null;
+        $imgUrl = $result['oxpic'] ?? $result['oxthumb'];
+        if ($imgUrl) {
+            $image['url'] = $this->getConfig()->getImageUrl($this->isAdmin(), true, null, $imgUrl);
+            $image['caption'] = $result['oxtitle'];
+        }
+
+        return $image;
     }
 }

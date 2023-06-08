@@ -83,8 +83,17 @@ class SiteMapGenerator
                 $url = strtolower($url);
             }
 
+            $imageXml = '';
+            $image = $page->getImage();
+            if ($image) {
+                $imageXml = '<image:image>
+                                <image:loc>' . $image['url'] . '</image:loc>
+                                <image:caption>' . $image['caption'] . '</image:caption>
+                            </image:image>';
+            }
             $xmlLines[] = '<url><loc>' . $url . '</loc>
                             <priority>' . $page->getPriority() . '</priority>
+                            ' . $imageXml . '
                             <lastmod>' . $page->getLastmod() . '</lastmod>
                             <changefreq>' . $page->getChangefreq() . '</changefreq></url>';
         }
