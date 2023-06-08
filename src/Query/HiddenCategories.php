@@ -12,7 +12,7 @@ class HiddenCategories extends AbstractQuery
 {
     public function getQuery(QueryBuilder $queryBuilder): QueryBuilder
     {
-        $queryBuilder->select('oxid', 'oxtitle', 'oxdesc', 'oxlongdesc', 'oxseo.oxstdurl', 'oxseo.oxseourl')
+        $queryBuilder->select('oxid', 'oxtitle', 'oxdesc', 'oxlongdesc','oxthumb', 'oxseo.oxstdurl', 'oxseo.oxseourl')
                      ->from('oxcategories')
                      ->join('oxcategories', 'oxseo', 'oxseo', 'oxseo.OXOBJECTID = oxcategories.OXID')
                      ->where('oxactive = :active', 'oxhidden = :hidden')

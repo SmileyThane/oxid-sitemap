@@ -9,7 +9,7 @@ class Variants extends Products
     public function getQuery(QueryBuilder $queryBuilder): QueryBuilder
     {
         $queryBuilder
-            ->select('oxarticles.oxid', 'oxarticles.oxtimestamp')
+            ->select('oxarticles.oxid', 'oxarticles.oxtimestamp', 'oxarticles.oxtitle', 'oxarticles.oxpic1')
             ->from('oxarticles')
             ->leftJoin('oxarticles', 'oxarticles', 'oxparent', 'oxarticles.oxparentid = oxparent.oxid')
             ->where('oxarticles.oxactive = :active', 'oxarticles.oxparentid = :parent')

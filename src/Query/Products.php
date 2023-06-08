@@ -11,7 +11,7 @@ class Products extends AbstractQuery
     public function getQuery(QueryBuilder $queryBuilder): QueryBuilder
     {
         $queryBuilder
-            ->select('oxid', 'oxtimestamp')
+            ->select('oxid', 'oxarticles.oxtitle', 'oxtimestamp', 'oxarticles.oxpic1')
             ->from('oxarticles')
             ->where('oxactive = :active', 'oxparentid = ""')
             ->orderBy('oxtitle', 'ASC')
@@ -30,11 +30,15 @@ class Products extends AbstractQuery
 
         $time = explode(" ", $result['oxtimestamp']);
 
+
+
         return new Page(
             $article->getMainLink(),
             $this->hierarchy,
             $time[0] . 'T' . $time[1] . '+00:00',
-            $this->changefreq
+            $this->changefreq,
+            $this->getImageData($result)
+
         );
     }
 }
