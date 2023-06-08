@@ -2,6 +2,7 @@
 
 namespace SmileyThane\OxidSiteMap\Query;
 
+use OxidEsales\Eshop\Core\Registry;
 use SmileyThane\OxidSiteMap\Entity\Config;
 use SmileyThane\OxidSiteMap\Entity\Page;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
@@ -61,14 +62,6 @@ abstract class AbstractQuery implements QueryInterface
             $url = $result['oxstdurl'];
         }
 
-        $image = null;
-        $imgUrl = $result['oxpic'] ?? $result['oxthumb'];
-        if ($imgUrl) {
-            $image['url'] = $this->getConfig()->getImageUrl($this->isAdmin(), true, null, $imgUrl);
-            $image['caption'] = $result['oxtitle'];
-        }
-
-
         return new Page(
             $this->config->getShopUrl() . $url,
             $this->hierarchy,
@@ -79,10 +72,19 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     protected function getImageData($result) {
-        $image = null;
-        $imgUrl = $result['oxpic'] ?? $result['oxthumb'];
+        $image = [];
+        if (isset($result['oxpic1'])) {
+            $file = $result['oxpic1'];
+            $folder = "product/1/";
+        } else {
+            $file = $result['oxthumb'];
+            $folder = "thumb";
+        }
+
+        $imgUrl = Registry::getPictureHandler()->getProductPicUrl($folder, $file, Registry::getConfig()->getConfigParam('sThumbnailsize'));
+
         if ($imgUrl) {
-            $image['url'] = $this->getConfig()->getImageUrl($this->isAdmin(), true, null, $imgUrl);
+            $image['url'] = $imgUrl;
             $image['caption'] = $result['oxtitle'];
         }
 
