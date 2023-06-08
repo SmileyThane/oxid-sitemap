@@ -88,4 +88,12 @@ abstract class AbstractQuery implements QueryInterface
 
         return $image;
     }
+
+    /**
+     * @return Config
+     */
+    public function getConfig(): Config
+    {
+        return $this->config;
+    }
 }
