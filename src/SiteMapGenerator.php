@@ -91,11 +91,13 @@ class SiteMapGenerator
                                 <image:caption>' . $image['caption'] . '</image:caption>
                             </image:image>';
             }
-            $xmlLines[] = '<url><loc>' . $url . '</loc>
+            $xmlLines[] =  "\n" . '<url>
+                            <loc>' . $url . '</loc>
                             <priority>' . $page->getPriority() . '</priority>
                             ' . $imageXml . '
                             <lastmod>' . $page->getLastmod() . '</lastmod>
-                            <changefreq>' . $page->getChangefreq() . '</changefreq></url>';
+                            <changefreq>' . $page->getChangefreq() . '</changefreq>
+                            </url>' . "\n";
         }
         $xmlLines[] = '</urlset>';
 
