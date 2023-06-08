@@ -34,7 +34,8 @@ class HomePage implements QueryInterface
                 $this->config->getShopUrl(),
                 $this->hierarchy,
                 (new \DateTime())->format(\DateTime::ATOM),
-                $this->changefreq
+                $this->changefreq,
+                null
             )
         ];
     }
