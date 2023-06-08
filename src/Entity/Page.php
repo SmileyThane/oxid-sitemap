@@ -8,6 +8,7 @@ class Page
     private $priority;
     private $lastmod;
     private $changefreq;
+    private $image;
 
     /**
      * Page constructor.
@@ -16,12 +17,13 @@ class Page
      * @param string $lastmod
      * @param string $changefreq
      */
-    public function __construct(string $url, string $priority, string $lastmod, string $changefreq)
+    public function __construct(string $url, string $priority, string $lastmod, string $changefreq, array $image)
     {
         $this->url        = $url;
         $this->priority   = $priority;
         $this->lastmod    = $lastmod;
         $this->changefreq = $changefreq;
+        $this->image      = $image;
     }
 
     public function getUrl(): string
@@ -42,5 +44,10 @@ class Page
     public function getChangefreq(): string
     {
         return $this->changefreq;
+    }
+
+    public function getImage(): array
+    {
+        return $this->image;
     }
 }
