@@ -35,7 +35,7 @@ class HomePage implements QueryInterface
                 $this->hierarchy,
                 (new \DateTime())->format(\DateTime::ATOM),
                 $this->changefreq,
-                null
+                []
             )
         ];
     }
