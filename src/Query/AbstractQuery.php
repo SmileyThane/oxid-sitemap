@@ -85,7 +85,7 @@ abstract class AbstractQuery implements QueryInterface
 
         if ($imgUrl) {
             $image['url'] = $imgUrl;
-            $image['caption'] = $result['oxtitle'];
+            $image['caption'] = htmlspecialchars($result['oxtitle']);
         }
 
         return $image;
