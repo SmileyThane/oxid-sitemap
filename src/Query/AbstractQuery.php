@@ -78,7 +78,7 @@ abstract class AbstractQuery implements QueryInterface
             $folder = "product/1/";
         } else {
             $file = $result['oxthumb'];
-            $folder = "thumb";
+            $folder = "thumb/";
         }
 
         $imgUrl = Registry::getPictureHandler()->getProductPicUrl($folder, $file, Registry::getConfig()->getConfigParam('sThumbnailsize'));
