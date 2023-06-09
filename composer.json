@@ -2,18 +2,12 @@
   "name": "smileythane/oxid-sitemap",
   "type": "oxideshop-module",
   "keywords": ["oxid", "modules", "eShop", "sitemap"],
-  "description": "generate a SiteMap",
+  "description": "SiteMap generator for Oxid Eshop",
   "licence": "GPL-3.0",
   "authors": [
     {
-      "name": "Ivo Bathke",
-      "email": "hello@ivo-bathke.name"
-    },
-    {
-      "name": "DIATOM Internet & Medien GmbH"
-    },
-    {
-      "name": "Proud Sourcing GmbH"
+      "name": "Hleb Prakhnitski",
+      "email": "thane.crios@gmail.com"
     }
   ],
   "require": {
