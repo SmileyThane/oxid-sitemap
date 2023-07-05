@@ -40,7 +40,7 @@
   },
   "extra": {
     "oxideshop": {
-      "target-directory": "smileythane/sitemap",
+      "target-directory": "projekteins/sitemap",
       "blacklist-filter": [
         "composer.json",
         "*.md",
