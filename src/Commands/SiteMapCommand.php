@@ -6,6 +6,7 @@ use SmileyThane\OxidSiteMap\SiteMapGenerator;
 use OxidEsales\EshopCommunity\Internal\Framework\Console\AbstractShopAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use OxidEsales\Eshop\Core\Registry;
 
 class SiteMapCommand extends AbstractShopAwareCommand
 {
@@ -33,9 +34,11 @@ class SiteMapCommand extends AbstractShopAwareCommand
     {
         $output->writeln('Generating Sitemap');
         $this->siteMapGenerator->generate();
+        $folder = Registry::getConfig()->getConfigParam('sSitemapPath') ?? '/';
         $output->writeln(
             'Generated Sitemap in ' .
             $this->siteMapGenerator->getConfig()->getFilepath() .
+            $folder .
             $this->siteMapGenerator->getConfig()->getFilename()
         );
 

@@ -2,6 +2,7 @@
 
 namespace SmileyThane\OxidSiteMap;
 
+use OxidEsales\Eshop\Core\Registry;
 use SmileyThane\OxidSiteMap\Entity\Config;
 use SmileyThane\OxidSiteMap\Filter\FilterInterface;
 use SmileyThane\OxidSiteMap\Query\QueryInterface;
@@ -109,7 +110,11 @@ class SiteMapGenerator
      */
     protected function createXmlFile($xml)
     {
-        $file = $this->config->getFilepath() . '/' . $this->config->getFilename();
+        $folder = Registry::getConfig()->getConfigParam('sSitemapPath') ?? '/';
+        if (!is_dir($this->config->getFilepath() . $folder)) {
+            mkdir($this->config->getFilepath() . $folder, 0777, true);
+        }
+        $file = $this->config->getFilepath() . $folder . $this->config->getFilename();
         $fp   = fopen($file, "w+");
         fwrite($fp, $xml);
         fclose($fp);
