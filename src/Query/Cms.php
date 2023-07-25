@@ -20,9 +20,11 @@ class Cms extends AbstractQuery
             ->join('oxcontents', 'oxseo', 'oxseo', 'oxseo.OXOBJECTID = oxcontents.OXID')
             ->where('oxcontents.oxactive = :active')
             ->andWhere('oxcontents.oxfolder IN (:folders)')
+            ->andWhere('oxlang IN (:langIds)')
             ->orderBy('oxcontents.oxtitle', 'ASC')
             ->setParameter('folders', $folders, Connection::PARAM_STR_ARRAY)
-            ->setParameter('active', 1);
+            ->setParameter('active', 1)
+            ->setParameter('langIds', implode(',', $this->config->getLangIds()));
 
         return $queryBuilder;
     }
